@@ -1,46 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper } from '@material-ui/core';
+import {
+  //   Card,
+  //   CardHeader,
+  //   CardMedia,
+  //   CardContent,
+  //   CardActions,
+  GridListTileBar,
+  IconButton,
+} from '@material-ui/core';
+import { AttachMoneyRounded } from '@material-ui/icons';
 
 const Place = ({
   name,
-  description,
   location,
   pricePerNight,
-  image,
-  imageThumbnail,
-  maxGuests,
-  petFriendly,
-  pool,
-  wifi,
+  //   description,
+  //   image,
+  //   imageThumbnail,
+  //   maxGuests,
+  //   petFriendly,
+  //   pool,
+  //   wifi,
 }) => {
   return (
-    <Paper component="ul" elevation={3}>
-      <li>{name}</li>
-      <li>{description}</li>
-      <li>{location}</li>
-      <li>{pricePerNight}</li>
-      <li>{image}</li>
-      <li>{imageThumbnail}</li>
-      <li>{maxGuests}</li>
-      <li>{petFriendly ? 'Pet Friendly' : 'No Pets Allowed'}</li>
-      {pool ? <li>Has a Pool!</li> : null}
-      {wifi ? <li>Free Wifi</li> : null}
-    </Paper>
+    <GridListTileBar
+      title={name}
+      subtitle={location}
+      actionIcon={
+        <IconButton aria-label={`info about ${name}`}>
+          <AttachMoneyRounded />
+          {pricePerNight}
+        </IconButton>
+      }
+    />
   );
 };
 
 Place.propTypes = {
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   pricePerNight: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  imageThumbnail: PropTypes.string.isRequired,
-  maxGuests: PropTypes.number.isRequired,
-  petFriendly: PropTypes.bool.isRequired,
-  pool: PropTypes.bool.isRequired,
-  wifi: PropTypes.bool.isRequired,
+  //   description: PropTypes.string.isRequired,
+  //   image: PropTypes.string.isRequired,
+  //   imageThumbnail: PropTypes.string.isRequired,
+  //   maxGuests: PropTypes.number.isRequired,
+  //   petFriendly: PropTypes.bool.isRequired,
+  //   pool: PropTypes.bool.isRequired,
+  //   wifi: PropTypes.bool.isRequired,
 };
 
 export default Place;

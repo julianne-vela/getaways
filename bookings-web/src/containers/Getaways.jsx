@@ -3,6 +3,7 @@ import Header from '../components/app/Header';
 import { getPlaces } from '../services/placesApi';
 import PlaceList from '../components/places/PlaceList';
 import Loading from '../components/app/Loading';
+import '../styles/Main.css';
 
 const Getaways = () => {
   const [places, setPlaces] = useState([]);

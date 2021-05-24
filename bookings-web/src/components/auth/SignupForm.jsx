@@ -3,8 +3,9 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useInput } from '../../hooks/useInput';
 
-const UserAuthForm = ({ newUser = null }) => {
+const SignupForm = () => {
   const TextInput = useInput();
+
   return (
     <Formik
       initialValues={{
@@ -35,49 +36,34 @@ const UserAuthForm = ({ newUser = null }) => {
       }}
     >
       <Form>
-        {newUser ? (
-          <>
-            <TextInput
-              label="firstName"
-              name="firstName"
-              type="text"
-              placeholder="Jane"
-            />
-            <TextInput
-              label="lastName"
-              name="lastName"
-              type="text"
-              placeholder="Doe"
-            />
-            <TextInput
-              label="email"
-              name="email"
-              type="email"
-              placeholder="jane@doe.com"
-            />
-            <TextInput label="password" name="password" type="password" />
-            <TextInput
-              label="passwordConfirm"
-              name="passwordConfirm"
-              type="password"
-            />
-          </>
-        ) : (
-          <>
-            <TextInput
-              label="email"
-              name="email"
-              type="email"
-              placeholder="jane@doe.com"
-            />
-            <TextInput label="password" name="password" type="password" />
-          </>
-        )}
-
+        <TextInput
+          label="firstName"
+          name="firstName"
+          type="text"
+          placeholder="Jane"
+        />
+        <TextInput
+          label="lastName"
+          name="lastName"
+          type="text"
+          placeholder="Doe"
+        />
+        <TextInput
+          label="email"
+          name="email"
+          type="email"
+          placeholder="jane@doe.com"
+        />
+        <TextInput label="password" name="password" type="password" />
+        <TextInput
+          label="passwordConfirm"
+          name="passwordConfirm"
+          type="password"
+        />
         <button type="submit">Submit</button>
       </Form>
     </Formik>
   );
 };
 
-export default UserAuthForm;
+export default SignupForm;

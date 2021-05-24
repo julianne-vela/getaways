@@ -1,12 +1,12 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import PropTypes from 'prop-types';
-import UserAuthForm from './UserAuthForm';
+import LoginForm from './LoginForm';
 
 const LoginModal = ({ open, onClose }) => {
   return (
     <Dialog open={open} onClose={onClose}>
-      <UserAuthForm />
+      <LoginForm />
     </Dialog>
   );
 };
