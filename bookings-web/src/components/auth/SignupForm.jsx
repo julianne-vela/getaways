@@ -1,66 +1,46 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import { useInput } from '../../hooks/useInput';
-import { signupUser } from '../../services/authApi';
+import { TextField, Button } from '@material-ui/core';
+import useStyles from '../../hooks/useStyles';
 
-const SignupForm = () => {
-  const TextInput = useInput();
-
+const SignupForm = ({ handleSignUp }) => {
+  const classes = useStyles();
   return (
-    <Formik
-      initialValues={{
-        email: '',
-        firstName: '',
-        lastName: '',
-        password: '',
-      }}
-      validationSchema={Yup.object({
-        firstName: Yup.string()
-          .max(15, 'Must be 15 characters or less')
-          .required('Required'),
-        lastName: Yup.string()
-          .max(20, 'Must be 20 characters or less')
-          .required('Required'),
-        email: Yup.string().email('Invalid email address').required('Required'),
-        password: Yup.string().required('Password is required'),
-        passwordConfirm: Yup.string().oneOf(
-          [Yup.ref('password'), null],
-          'Passwords must match'
-        ),
-      })}
-      onSubmit={async (values) => {
-        await signupUser(values);
-      }}
-    >
-      <Form>
-        <TextInput
-          label="firstName"
-          name="firstName"
-          type="text"
-          placeholder="Jane"
-        />
-        <TextInput
-          label="lastName"
-          name="lastName"
-          type="text"
-          placeholder="Doe"
-        />
-        <TextInput
-          label="email"
-          name="email"
-          type="email"
-          placeholder="jane@doe.com"
-        />
-        <TextInput label="password" name="password" type="password" />
-        <TextInput
-          label="passwordConfirm"
-          name="passwordConfirm"
-          type="password"
-        />
-        <button type="submit">Submit</button>
-      </Form>
-    </Formik>
+    <form className={classes.root} onSubmit={handleSignUp}>
+      <TextField
+        label="First Name"
+        type="text"
+        variant="filled"
+        required
+        placeholder="Jane"
+      />
+      <TextField
+        label="Last Name"
+        type="text"
+        variant="filled"
+        required
+        placeholder="Doe"
+      />
+      <TextField
+        label="Email Address"
+        type="email"
+        variant="filled"
+        required
+        placeholder="jane@doe.com"
+      />
+      <TextField label="Password" variant="filled" type="password" required />
+      <TextField
+        label="Confirm Password"
+        type="password"
+        variant="filled"
+        required
+      />
+      <span>
+        <Button variant="contained">Cancel</Button>
+        <Button type="submit" variant="contained" color="primary">
+          Sign Up
+        </Button>
+      </span>
+    </form>
   );
 };
 

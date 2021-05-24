@@ -11,3 +11,12 @@ export const signupUser = async ({ firstName, lastName, email, password }) => {
 
   return res.body;
 };
+
+export const loginUser = async ({ email, password }) => {
+  const res = await request.post('/login').send({
+    email,
+    password,
+  });
+
+  return res.body;
+};

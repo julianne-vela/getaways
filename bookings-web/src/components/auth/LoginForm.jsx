@@ -1,38 +1,37 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import { useInput } from '../../hooks/useInput';
+import { Button, TextField, Link } from '@material-ui/core';
+import { MemoryRouter as Router } from 'react-router';
+import { Link as RouterLink } from 'react-router-dom';
+import useStyles from '../../hooks/useStyles';
 
-const LoginForm = () => {
-  const TextInput = useInput();
+const LoginForm = ({ handleLogin, onClose, open }) => {
+  const classes = useStyles();
   return (
-    <Formik
-      initialValues={{
-        email: '',
-        password: '',
-      }}
-      validationSchema={Yup.object({
-        email: Yup.string().email('Invalid email address').required('Required'),
-        password: Yup.string().required('Password is required'),
-      })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      <Form>
-        <TextInput
-          label="email"
-          name="email"
-          type="email"
-          placeholder="jane@doe.com"
-        />
-        <TextInput label="password" name="password" type="password" />
-        <button type="submit">Submit</button>
-      </Form>
-    </Formik>
+    <form className={classes.root} onSubmit={handleLogin}>
+      <TextField
+        label="Email Address"
+        type="email"
+        variant="filled"
+        required
+        placeholder="jane@doe.com"
+      />
+      <TextField label="Password" variant="filled" type="password" required />
+      <span>
+        <Button variant="contained">Cancel</Button>
+        <Button type="submit" variant="contained" color="primary">
+          Submit
+        </Button>
+      </span>
+      <span>
+        Don't have an account?
+        <Router>
+          <Link component={RouterLink} to="/signup">
+            {' '}
+            Sign up!
+          </Link>
+        </Router>
+      </span>
+    </form>
   );
 };
 
