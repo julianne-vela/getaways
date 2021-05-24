@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AuthTabs = ({ value, handleChange, handleLogin, handleSignUp }) => {
+const AuthTabs = (props) => {
   const classes = useStyles();
 
   const a11yProps = (idx) => {
@@ -23,8 +23,8 @@ const AuthTabs = ({ value, handleChange, handleLogin, handleSignUp }) => {
   };
 
   return (
-    <TabContext className={classes.root} value={value}>
-      <TabList onChange={handleChange} aria-label="authentication-tabs">
+    <TabContext className={classes.root} value={props.value}>
+      <TabList onChange={props.handleChange} aria-label="authentication-tabs">
         <Tab label="Login" value="login" {...a11yProps(1)} />
         <Tab label="Sign Up" value="signup" {...a11yProps(2)} />
       </TabList>
@@ -33,12 +33,12 @@ const AuthTabs = ({ value, handleChange, handleLogin, handleSignUp }) => {
         <Typography>
           Login to your account to access your reservations.
         </Typography>
-        <LoginForm handleLogin={handleLogin} />
+        <LoginForm {...props} />
       </TabPanel>
 
       <TabPanel value="signup" idx={2}>
         <Typography>Create an account below to get started!</Typography>
-        <SignupForm handleSignUp={handleSignUp} />
+        <SignupForm {...props} />
       </TabPanel>
     </TabContext>
   );

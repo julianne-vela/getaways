@@ -26,16 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({
-  open,
-  value,
-  handleOpen,
-  handleClose,
-  handleLogin,
-  handleSignUp,
-  handleChange,
-}) => {
+const Header = (props) => {
   const classes = useStyles();
+
   return (
     <AppBar className={classes.root} position="static">
       <Typography variant="h4" className={classes.title}>
@@ -45,7 +38,7 @@ const Header = ({
       <Toolbar component="nav" className={classes.toolbar}>
         <Button
           className={classes.button}
-          onClick={handleOpen}
+          onClick={props.handleOpen}
           variant="contained"
           value="login"
           color="default"
@@ -54,12 +47,13 @@ const Header = ({
         </Button>
 
         <AuthModal
-          open={open}
-          value={value}
-          onClose={handleClose}
-          handleChange={handleChange}
-          handleLogin={handleLogin}
-          handleSignUp={handleSignUp}
+          {...props}
+          //   open={open}
+          //   value={value}
+          //   onClose={handleClose}
+          //   handleChange={handleChange}
+          //   handleLogin={handleLogin}
+          //   handleSignUp={handleSignUp}
         />
       </Toolbar>
     </AppBar>

@@ -7,6 +7,7 @@ const ONE_DAY_IN_MS = 1000 * 60 * 60 * 24;
 
 module.exports = Router()
   .post('/create', async (req, res, next) => {
+    console.log('BE: password', req.body.password);
     const password = bcrypt.hashSync(req.body.password, 10);
 
     try {
@@ -15,6 +16,7 @@ module.exports = Router()
         email: req.body.email,
         password,
       });
+      console.log('BE: user', user);
       res.send(user);
     } catch (err) {
       next(err);
@@ -22,6 +24,7 @@ module.exports = Router()
   })
   .post('/login', async (req, res, next) => {
     try {
+      console.log('BE: login', req.body);
       const { token, user } = await User.authorize(req.body);
 
       res.cookie('session', token, {

@@ -22,11 +22,11 @@ npm start
 
 ### Lab Ideas
 
--   [ ] <span style="color:red">**Add "Loading..." State (1 point)**</span>
--   [ ] <span style="color:red">**Style Places List (2 points)**</span>
+-   [x] <span style="color:red">**Add "Loading..." State (1 point)**</span>
+-   [x] <span style="color:red">**Style Places List (2 points)**</span>
 -   [ ] Add Place Detail Page (3 points)
--   [ ] <span style="color:red">**Add User Registration Page (2 points)**</span>
--   [ ] <span style="color:red">**Add Login Page (2 points)**</span>
+-   [x] <span style="color:red">**Add User Registration Page (2 points)**</span>
+-   [x] <span style="color:red">**Add Login Page (2 points)**</span>
 -   [ ] <span style="color:red">**Add Logout Page (2 points)**</span>
 -   [ ] Create "Edit User" Endpoint (1 point)
 -   [ ] Create "Edit User" Page (2 points)

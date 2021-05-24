@@ -8,10 +8,14 @@ import { Container } from '@material-ui/core';
 import style from '../styles/Main.css';
 
 const Getaways = () => {
-  const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [places, setPlaces] = useState([]);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('login');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleChange = (e, newValue) => {
     setValue(newValue);
@@ -21,17 +25,21 @@ const Getaways = () => {
     setOpen(true);
   };
 
-  const handleLogin = async (email, password) => {
-    await loginUser(email, password);
-  };
-
-  const handleSignUp = async (firstName, lastName, email, password) => {
-    console.log(firstName, lastName, email, password);
-    await signupUser(firstName, lastName, email, password);
-  };
-
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleLogin = async () => {
+    console.log(email, password);
+    await loginUser(email, password);
+    handleClose();
+  };
+
+  const handleSignUp = async () => {
+    // e.preventDefault();
+    console.log(firstName, lastName, email, password);
+    await signupUser(firstName, lastName, email, password);
+    handleClose();
   };
 
   useEffect(() => {
@@ -43,13 +51,17 @@ const Getaways = () => {
   return (
     <>
       <Header
+        open={open}
+        value={value}
         handleOpen={handleOpen}
         handleClose={handleClose}
-        open={open}
         handleLogin={handleLogin}
         handleSignUp={handleSignUp}
         handleChange={handleChange}
-        value={value}
+        setFirstName={setFirstName}
+        setLastName={setLastName}
+        setEmail={setEmail}
+        setPassword={setPassword}
       />
       <Container className={style.mainContainer} component="main" maxWidth="lg">
         {loading ? <Loading /> : <PlaceList places={places} />}
