@@ -11,6 +11,11 @@ const Getaways = () => {
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('login');
+
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -21,6 +26,7 @@ const Getaways = () => {
   };
 
   const handleSignUp = async (firstName, lastName, email, password) => {
+    console.log(firstName, lastName, email, password);
     await signupUser(firstName, lastName, email, password);
   };
 
@@ -42,6 +48,8 @@ const Getaways = () => {
         open={open}
         handleLogin={handleLogin}
         handleSignUp={handleSignUp}
+        handleChange={handleChange}
+        value={value}
       />
       <Container className={style.mainContainer} component="main" maxWidth="lg">
         {loading ? <Loading /> : <PlaceList places={places} />}

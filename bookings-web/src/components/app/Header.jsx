@@ -1,5 +1,4 @@
 import React from 'react';
-import LoginModal from '../auth/LoginModal';
 import {
   AppBar,
   Toolbar,
@@ -7,7 +6,7 @@ import {
   Button,
   makeStyles,
 } from '@material-ui/core';
-import SignupModal from '../auth/SignupModal';
+import AuthModal from '../auth/AuthModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,11 +27,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = ({
+  open,
+  value,
   handleOpen,
   handleClose,
   handleLogin,
-  //   handleSignUp,
-  open,
+  handleSignUp,
+  handleChange,
 }) => {
   const classes = useStyles();
   return (
@@ -40,6 +41,7 @@ const Header = ({
       <Typography variant="h4" className={classes.title}>
         Getaways
       </Typography>
+
       <Toolbar component="nav" className={classes.toolbar}>
         <Button
           className={classes.button}
@@ -50,17 +52,15 @@ const Header = ({
         >
           Login
         </Button>
-        <LoginModal
-          id="login"
+
+        <AuthModal
           open={open}
+          value={value}
           onClose={handleClose}
+          handleChange={handleChange}
           handleLogin={handleLogin}
-        />
-        {/* <SignupModal
-          open={open}
-          handleClose={handleClose}
           handleSignUp={handleSignUp}
-        /> */}
+        />
       </Toolbar>
     </AppBar>
   );

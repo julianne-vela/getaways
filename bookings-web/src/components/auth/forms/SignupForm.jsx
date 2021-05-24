@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField, Button } from '@material-ui/core';
-import useStyles from '../../hooks/useStyles';
+import useStyles from '../../../hooks/useStyles';
 
 const SignupForm = ({ handleSignUp }) => {
   const classes = useStyles();

@@ -13,7 +13,7 @@ export const signupUser = async ({ firstName, lastName, email, password }) => {
 };
 
 export const loginUser = async ({ email, password }) => {
-  const res = await request.post('/login').send({
+  const res = await request.post(`${URL}/login`).send({
     email,
     password,
   });

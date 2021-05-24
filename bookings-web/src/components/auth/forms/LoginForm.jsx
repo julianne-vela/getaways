@@ -1,11 +1,10 @@
 import React from 'react';
-import { Button, TextField, Link } from '@material-ui/core';
-import { MemoryRouter as Router } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
-import useStyles from '../../hooks/useStyles';
+import { Button, TextField } from '@material-ui/core';
+import useStyles from '../../../hooks/useStyles';
 
-const LoginForm = ({ handleLogin, onClose, open }) => {
+const LoginForm = ({ handleLogin }) => {
   const classes = useStyles();
+
   return (
     <form className={classes.root} onSubmit={handleLogin}>
       <TextField
@@ -19,17 +18,8 @@ const LoginForm = ({ handleLogin, onClose, open }) => {
       <span>
         <Button variant="contained">Cancel</Button>
         <Button type="submit" variant="contained" color="primary">
-          Submit
+          Login
         </Button>
-      </span>
-      <span>
-        Don't have an account?
-        <Router>
-          <Link component={RouterLink} to="/signup">
-            {' '}
-            Sign up!
-          </Link>
-        </Router>
       </span>
     </form>
   );
