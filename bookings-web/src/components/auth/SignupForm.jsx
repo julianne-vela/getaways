@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useInput } from '../../hooks/useInput';
+import { signupUser } from '../../services/authApi';
 
 const SignupForm = () => {
   const TextInput = useInput();
@@ -28,11 +29,8 @@ const SignupForm = () => {
           'Passwords must match'
         ),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+      onSubmit={async (values) => {
+        await signupUser(values);
       }}
     >
       <Form>
