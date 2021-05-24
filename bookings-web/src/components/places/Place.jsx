@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Paper } from '@material-ui/core';
 
 const Place = ({
   name,
@@ -14,7 +15,7 @@ const Place = ({
   wifi,
 }) => {
   return (
-    <ul>
+    <Paper component="ul" elevation={3}>
       <li>{name}</li>
       <li>{description}</li>
       <li>{location}</li>
@@ -25,7 +26,7 @@ const Place = ({
       <li>{petFriendly ? 'Pet Friendly' : 'No Pets Allowed'}</li>
       {pool ? <li>Has a Pool!</li> : null}
       {wifi ? <li>Free Wifi</li> : null}
-    </ul>
+    </Paper>
   );
 };
 
