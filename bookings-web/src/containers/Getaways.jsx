@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { getPlaces } from '../services/placesApi';
+import React from 'react';
+import Loading from '../components/app/Loading';
 import PlaceList from '../components/places/PlaceList';
+import { Container } from '@material-ui/core';
+import { usePlaces } from '../hooks/usePlaces';
+import style from '../styles/Main.css';
 
 const Getaways = () => {
-  const [places, setPlaces] = useState([]);
+  const { loading, places } = usePlaces();
 
-  useEffect(() => {
-    getPlaces().then(setPlaces);
-  }, []);
-
-  return <PlaceList places={places} />;
+  return (
+    <Container className={style.mainContainer} component="main" maxWidth="lg">
+      {loading ? <Loading /> : <PlaceList places={places} />}
+    </Container>
+  );
 };
 
 export default Getaways;
