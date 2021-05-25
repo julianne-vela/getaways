@@ -1,23 +1,29 @@
-import request from 'superagent';
-const URL = 'http://localhost:7890/api/v1/users';
+export const signupUser = async ({ email, password }) => {
+  const username = email.substring(0, email.lastIndexOf('@'));
 
-export const signupUser = async (firstName, lastName, email, password) => {
-  // path: /create
-  // required: username, password, email
-  const username = `${firstName}_${lastName}`;
-  console.log('apiUtils: username', username);
-  const res = await request
-    .post(`${URL}/create`)
-    .send({ username, email, password });
-
-  return res.body;
-};
-
-export const loginUser = async (email, password) => {
-  const res = await request.post(`${URL}/login`).send({
-    email,
-    password,
+  const res = await fetch(`${process.env.BASE_URL}/users/create`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'Application/json' },
+    body: JSON.stringify({
+      username,
+      email,
+      password,
+    }),
   });
 
-  return res.body;
+  return res.json();
+};
+
+export const loginUser = async ({ email, password }) => {
+  console.log(userState);
+  const res = await fetch(`${process.env.BASE_URL}/users/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'Application/json;' },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  });
+
+  return res.json();
 };

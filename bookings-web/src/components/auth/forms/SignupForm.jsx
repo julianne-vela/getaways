@@ -1,52 +1,42 @@
 import React from 'react';
 import { TextField, Button } from '@material-ui/core';
-import useStyles from '../../../hooks/useStyles';
+import useStyles from '../../../hooks/useFormStyles';
+import { useAuth } from '../../../hooks/useAuth';
 
-const SignupForm = (props) => {
+const SignupForm = () => {
   const classes = useStyles();
+  const { handleSubmit, handleUserUpdate, handleClose, userState } = useAuth();
+
   return (
-    <form className={classes.root} onSubmit={props.handleSignUp}>
-      <TextField
-        label="First Name"
-        type="text"
-        variant="filled"
-        required
-        onChange={(e) => props.setFirstName(e.target.value)}
-        placeholder="Jane"
-      />
-
-      <TextField
-        label="Last Name"
-        type="text"
-        variant="filled"
-        required
-        onChange={(e) => props.setLastName(e.target.value)}
-        placeholder="Doe"
-      />
-
+    <form className={classes.root} name="signup" onSubmit={handleSubmit}>
       <TextField
         label="Email Address"
         type="email"
+        name="email"
         variant="filled"
         required
-        onChange={(e) => props.setEmail(e.target.value)}
+        value={userState.email}
+        onChange={handleUserUpdate}
         placeholder="jane@doe.com"
       />
 
       <TextField label="Password" variant="filled" type="password" required />
+
       <TextField
         label="Confirm Password"
         type="password"
         variant="filled"
+        name="password"
         required
-        onChange={(e) => props.setPassword(e.target.value)}
+        value={userState.password}
+        onChange={handleUserUpdate}
       />
 
       <span>
-        <Button variant="contained" onClick={props.handleClose}>
+        <Button variant="contained" onClick={handleClose}>
           Cancel
         </Button>
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" name="signup" variant="contained" color="primary">
           Sign Up
         </Button>
       </span>

@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles, Tab, Typography } from '@material-ui/core';
 import { TabContext, TabList, TabPanel } from '@material-ui/lab';
 import LoginForm from '../forms/LoginForm';
 import SignupForm from '../forms/SignupForm';
+import { useAuth } from '../../../hooks/useAuth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,8 +12,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AuthTabs = (props) => {
+const AuthTabs = () => {
   const classes = useStyles();
+  const { value, handleTabChange } = useAuth();
 
   const a11yProps = (idx) => {
     return {
@@ -23,8 +24,8 @@ const AuthTabs = (props) => {
   };
 
   return (
-    <TabContext className={classes.root} value={props.value}>
-      <TabList onChange={props.handleChange} aria-label="authentication-tabs">
+    <TabContext className={classes.root} value={value}>
+      <TabList onChange={handleTabChange} aria-label="authentication-tabs">
         <Tab label="Login" value="login" {...a11yProps(1)} />
         <Tab label="Sign Up" value="signup" {...a11yProps(2)} />
       </TabList>
@@ -33,20 +34,15 @@ const AuthTabs = (props) => {
         <Typography>
           Login to your account to access your reservations.
         </Typography>
-        <LoginForm {...props} />
+        <LoginForm />
       </TabPanel>
 
       <TabPanel value="signup" idx={2}>
         <Typography>Create an account below to get started!</Typography>
-        <SignupForm {...props} />
+        <SignupForm />
       </TabPanel>
     </TabContext>
   );
-};
-
-AuthTabs.propTypes = {
-  value: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
 };
 
 export default AuthTabs;

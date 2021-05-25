@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  makeStyles,
-} from '@material-ui/core';
+import { AppBar, Typography, makeStyles } from '@material-ui/core';
 import AuthModal from '../auth/AuthModal';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,8 +20,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = (props) => {
+const Header = () => {
   const classes = useStyles();
+  //   const { handleOpen, handleSubmit, isLoggedIn, name } = useAuth();
 
   return (
     <AppBar className={classes.root} position="static">
@@ -35,27 +30,22 @@ const Header = (props) => {
         Getaways
       </Typography>
 
-      <Toolbar component="nav" className={classes.toolbar}>
-        <Button
-          className={classes.button}
-          onClick={props.handleOpen}
-          variant="contained"
-          value="login"
-          color="default"
-        >
-          Login
-        </Button>
-
-        <AuthModal
-          {...props}
-          //   open={open}
-          //   value={value}
-          //   onClose={handleClose}
-          //   handleChange={handleChange}
-          //   handleLogin={handleLogin}
-          //   handleSignUp={handleSignUp}
-        />
-      </Toolbar>
+      {/* {isLoggedIn ? (
+        <Box>
+          <Typography>Welcome, ${name}!</Typography>
+          <Button
+            className={classes.button}
+            onClick={handleSubmit}
+            variant="contained"
+            name="logout"
+            color="secondary"
+          >
+            Logout
+          </Button>
+        </Box>
+      ) : ( */}
+      <AuthModal />
+      {/* //   )} */}
     </AppBar>
   );
 };

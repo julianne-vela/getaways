@@ -24,7 +24,6 @@ module.exports = Router()
   })
   .post('/login', async (req, res, next) => {
     try {
-      console.log('BE: login', req.body);
       const { token, user } = await User.authorize(req.body);
 
       res.cookie('session', token, {
@@ -46,6 +45,14 @@ module.exports = Router()
       .status(200)
       .json({ success: true, message: 'Logged out succcessfully!' });
   })
+  //   .get('/lookupEmail/:email', async (req, res, next) => {
+  //     try {
+  //       const user = await User.find({ email: req.params.email });
+  //       res.send(user);
+  //     } catch (err) {
+  //       next(err);
+  //     }
+  //   })
   .get('/:id', async (req, res, next) => {
     try {
       const user = await User.findOne({ _id: req.params.id });
