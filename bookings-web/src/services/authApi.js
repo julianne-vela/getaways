@@ -15,14 +15,16 @@ export const signupUser = async ({ email, password }) => {
 };
 
 export const loginUser = async ({ email, password }) => {
-  console.log(userState);
   const res = await fetch(`${process.env.BASE_URL}/users/login`, {
     method: 'POST',
-    headers: { 'Content-Type': 'Application/json;' },
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
-      email,
-      password,
+      email: email,
+      password: password,
     }),
+    credentials: 'include',
   });
 
   return res.json();

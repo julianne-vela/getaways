@@ -5,7 +5,7 @@ import { useAuth } from '../../../hooks/useAuth';
 
 const LoginForm = () => {
   const classes = useStyles();
-  const { handleSubmit, handleUserUpdate, handleClose } = useAuth();
+  const { handleSubmit, handleUserUpdate, handleClose, userState } = useAuth();
 
   return (
     <form className={classes.root} name="login" onSubmit={handleSubmit}>
@@ -15,6 +15,7 @@ const LoginForm = () => {
         name="email"
         variant="filled"
         required
+        value={userState.email}
         placeholder="jane@doe.com"
         onChange={handleUserUpdate}
       />
@@ -24,6 +25,7 @@ const LoginForm = () => {
         name="password"
         type="password"
         required
+        value={userState.password}
         onChange={handleUserUpdate}
       />
       <span>

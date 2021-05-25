@@ -25,7 +25,7 @@ module.exports = Router()
   .post('/login', async (req, res, next) => {
     try {
       const { token, user } = await User.authorize(req.body);
-
+      console.log(user);
       res.cookie('session', token, {
         httpOnly: true,
         maxAge: ONE_DAY_IN_MS,

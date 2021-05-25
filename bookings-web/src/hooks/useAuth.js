@@ -23,9 +23,8 @@ export const useAuth = () => {
       // handleLogout
       console.log('Logged out successfully!');
     }
-    setIsLoggedIn(!isLoggedIn);
-
     handleClose();
+    setIsLoggedIn(!isLoggedIn);
   };
 
   const handleTabChange = (e, newValue) => {

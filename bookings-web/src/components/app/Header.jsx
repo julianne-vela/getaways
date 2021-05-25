@@ -22,30 +22,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
-  //   const { handleOpen, handleSubmit, isLoggedIn, name } = useAuth();
 
   return (
     <AppBar className={classes.root} position="static">
       <Typography variant="h4" className={classes.title}>
         Getaways
       </Typography>
-
-      {/* {isLoggedIn ? (
-        <Box>
-          <Typography>Welcome, ${name}!</Typography>
-          <Button
-            className={classes.button}
-            onClick={handleSubmit}
-            variant="contained"
-            name="logout"
-            color="secondary"
-          >
-            Logout
-          </Button>
-        </Box>
-      ) : ( */}
       <AuthModal />
-      {/* //   )} */}
     </AppBar>
   );
 };
