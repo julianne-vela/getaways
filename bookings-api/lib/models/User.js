@@ -35,6 +35,7 @@ const schema = new mongoose.Schema(
 schema.statics.authorize = async function ({ email, password }) {
   // check that user exists
   const user = await this.findOne({ email });
+
   if (!user) throw new Error('Invalid Email');
 
   // check password match
