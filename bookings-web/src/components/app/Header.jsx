@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = ({ ...auth }) => {
   const classes = useStyles();
 
   return (
@@ -28,7 +28,7 @@ const Header = () => {
       <Typography variant="h4" className={classes.title}>
         Getaways
       </Typography>
-      <AuthModal />
+      <AuthModal {...auth} />
     </AppBar>
   );
 };

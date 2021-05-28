@@ -1,11 +1,14 @@
 import React from 'react';
 import { TextField, Button } from '@material-ui/core';
 import useStyles from '../../../hooks/useFormStyles';
-import { useAuth } from '../../../hooks/useAuth';
 
-const SignupForm = () => {
+const SignupForm = ({
+  handleSubmit,
+  handleUserUpdate,
+  handleClose,
+  userState,
+}) => {
   const classes = useStyles();
-  const { handleSubmit, handleUserUpdate, handleClose, userState } = useAuth();
 
   return (
     <form className={classes.root} name="signup" onSubmit={handleSubmit}>
