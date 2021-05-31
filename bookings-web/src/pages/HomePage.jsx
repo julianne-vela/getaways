@@ -1,22 +1,36 @@
 import React from 'react';
-import Loading from '../components/app/LoadSkeleton';
 import PlaceList from '../components/places/PlaceList';
+import { Grid, makeStyles } from '@material-ui/core';
 import { usePlaces } from '../hooks/usePlaces';
-import { Container } from '@material-ui/core';
-import base from '../styles/main.css';
-import search from '../styles/search.css';
+import SearchControls from '../components/places/controls/SearchControls';
+import { usePagination } from '../hooks/usePagination';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flex: 'auto',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 
 const HomePage = () => {
-  const { loading, places } = usePlaces();
+  const classes = useStyles();
 
-  if (loading) return <Loading loading={loading} places={places} />;
   return (
-    <Container className={base.mainContainer} component="main" maxWidth="lg">
-      <aside className={search.controls}>Search Controls</aside>
-      <section>
-        <PlaceList places={places} />
-      </section>
-    </Container>
+    <Grid
+      container
+      className={classes.root}
+      component="main"
+      maxWidth="lg"
+      spacing={1}
+    >
+      <Grid container item component="section">
+        <PlaceList {...props} />
+      </Grid>
+    </Grid>
   );
 };
 

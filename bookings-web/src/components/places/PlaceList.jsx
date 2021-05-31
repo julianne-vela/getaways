@@ -1,25 +1,31 @@
 import React from 'react';
-import { Container, GridList, GridListTile } from '@material-ui/core';
+import { GridList, GridListTile, makeStyles } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 import PropTypes from 'prop-types';
 import Place from './Place';
 
-const PlaceList = ({ places }) => {
+const PlaceList = ({ places, loading, minTimeElapsed }) => {
   return (
-    <Container>
-      <GridList cellHeight={300} cols={3} spacing={4}>
-        {places.map((place) => (
-          <GridListTile key={place.id}>
-            <img
-              src={place.imageThumbnail}
-              alt={place.title}
-              width="400px"
-              height="300px"
-            />
-            <Place {...place} />
+    <GridList cellHeight={500} cols={3} spacing={4}>
+      {(!minTimeElapsed || loading ? Array.from(new Array(25)) : places).map(
+        (place, index) => (
+          <GridListTile key={index}>
+            {place ? (
+              <Place {...place} />
+            ) : (
+              <Skeleton
+                variant="rect"
+                animation="wave"
+                height={300}
+                width={400}
+              >
+                <Place />
+              </Skeleton>
+            )}
           </GridListTile>
-        ))}
-      </GridList>
-    </Container>
+        )
+      )}
+    </GridList>
   );
 };
 
