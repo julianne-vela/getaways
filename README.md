@@ -29,7 +29,7 @@ The goal of this lab is to provide an example of tackling work in an existing co
 The lab ideas below are a combination of feature requests, bugs to fix, and tech debt. If you have an idea for something to add, feel free to [create an issue](https://github.com/alchemycodelab/getaways/issues/new).
 
 ## Utility
-- [x] Add "Loading..." State (1 point)
+- [x] ~~Add "Loading..." State (1 point)~~
 
 ## Places
 - [x] ~~Style Places List (2 points)~~
