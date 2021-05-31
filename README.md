@@ -32,7 +32,7 @@ The lab ideas below are a combination of feature requests, bugs to fix, and tech
 - [x] Add "Loading..." State (1 point)
 
 ## Places
-- [x] ~~Style Places List (2 points)
+- [x] ~~Style Places List (2 points)~~
 - [ ] Add Place Detail Page (3 points)
 - [ ] <span style="color:red">**Add Places List Pagination - API (2 points)**</span>
 - [ ] <span style="color:red">**Add Places List Pagination - client (2 points)**</span>
@@ -41,8 +41,8 @@ The lab ideas below are a combination of feature requests, bugs to fix, and tech
   - [ ] Add "Cancel Booking" Page (2 points)
 
 ## Users
-- [x] ~~Add User Registration Page (2 points)
-- [x] ~~Add Login Page (2 points)
+- [x] ~~Add User Registration Page (2 points)~~
+- [x] ~~Add Login Page (2 points)~~
 - [x] <span style="color:red">**Add Logout Button/Page (2 points)**</span>
 - [ ] Create "Edit User" Endpoint (2 points)
   - [ ] Create "Edit User" Page (2 points)
