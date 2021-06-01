@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { loginUser, signupUser } from '../services/authApi';
+import { loginUser, logoutUser, signupUser } from '../services/authApi';
 
 export const useAuth = () => {
   const [open, setOpen] = useState(false);
@@ -20,7 +20,7 @@ export const useAuth = () => {
     } else if (name === 'login') {
       await loginUser(userState);
     } else {
-      // handleLogout
+      logoutUser();
       console.log('Logged out successfully!');
     }
     handleClose();

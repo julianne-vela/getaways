@@ -29,3 +29,9 @@ export const loginUser = async ({ email, password }) => {
 
   return res.json();
 };
+
+export const logoutUser = async () => {
+  const res = await fetch(`${process.env.BASE_URL}/users/logout`);
+
+  return res.json();
+};
