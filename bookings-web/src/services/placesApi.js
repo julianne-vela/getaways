@@ -1,8 +1,10 @@
-export const getPlaces = async () => {
-  const response = await fetch(`${process.env.BASE_URL}/places`);
-  if (response.ok) {
-    const result = await response.json();
-    return result.map(
+export const getPlaces = async (currentPage, perPage) => {
+  const res = await fetch(
+    `${process.env.BASE_URL}/places?page=${currentPage}&perPage=${perPage}`
+  );
+  if (res.ok) {
+    const { places, perPage, totalPages, currentPage } = await res.json();
+    const placesArray = places.map(
       ({
         price_per_night,
         image_thumbnail,
@@ -17,6 +19,8 @@ export const getPlaces = async () => {
         petFriendly: pet_friendly,
       })
     );
+
+    return { placesArray, perPage, totalPages, currentPage };
   } else {
     throw new Error(await response.json());
   }

@@ -14,6 +14,7 @@ export default function App() {
     <>
       <CssBaseline />
       <Header {...auth} />
+
       <Switch>
         {/* open routes */}
         <Route exact path="/" component={HomePage} />

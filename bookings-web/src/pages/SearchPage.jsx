@@ -1,16 +1,17 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import SearchControls from '../components/places/SearchControls';
 import PlaceList from '../components/places/PlaceList';
-import Pagination from '../components/controls/Pagination';
+import PageNavBar from '../components/controls/Pagination';
 import Search from '../components/controls/Search';
 import Filter from '../components/controls/Filter';
+import { usePlaces } from '../hooks/usePlaces';
 
 const SearchPage = () => {
+  const props = usePlaces();
   return (
     <Grid component="main" container>
-      <Grid component="aside" container list className="pageNav">
-        <Pagination />
+      <Grid component="aside" container item className="pageNav">
+        <PageNavBar {...props} />
       </Grid>
       <Grid
         component="aside"
@@ -19,11 +20,11 @@ const SearchPage = () => {
         className="sideBar"
         aria-label="sidebar controls"
       >
-        <Search />
-        <Filter />
+        <Search {...props} />
+        <Filter {...props} />
       </Grid>
-      <Grid component="section" container list className="displayList">
-        <PlaceList container item />
+      <Grid component="section" container item className="displayList">
+        <PlaceList {...props} />
       </Grid>
     </Grid>
   );
