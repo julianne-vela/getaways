@@ -5,13 +5,13 @@ export const usePlaces = () => {
   //   simulate random load time between 0-5 sec
   const minTime = Math.random() * 5000;
   const [loadAnimation, setLoadAnimation] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [placesArray, setPlacesArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
-  const [totalPages, setTotalPages] = useState();
+  const [totalPages, setTotalPages] = useState(15);
 
-  const handlePageChange = ({ target: { value } }) => {
+  const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
 
@@ -20,13 +20,10 @@ export const usePlaces = () => {
   };
 
   const handleLoadAnimation = useCallback(() => {
-    console.log('useEffect BEFORE', loadAnimation);
     setLoadAnimation(false);
-    console.log('useEffect MIDDLE', loadAnimation);
     setTimeout(() => {
       setLoadAnimation(true);
     }, minTime);
-    console.log('useEffect AFTER', loadAnimation);
   }, [loadAnimation, minTime]);
 
   useEffect(() => {
@@ -42,12 +39,12 @@ export const usePlaces = () => {
 
   return {
     loading,
-    placesArray,
-    perPage,
-    handlePageChange,
-    handlePerPage,
-    totalPages,
-    currentPage,
     loadAnimation,
+    placesArray,
+    currentPage,
+    totalPages,
+    perPage,
+    handlePerPage,
+    handlePageChange,
   };
 };

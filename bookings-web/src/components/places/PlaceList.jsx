@@ -5,7 +5,7 @@ import Place from './Place';
 
 const PlaceList = ({ loading, loadAnimation, placesArray }) => {
   return (
-    <GridList cellHeight={500} cols={3} spacing={4}>
+    <GridList cellHeight={400} cols={3} spacing={2}>
       {(!loadAnimation || loading
         ? Array.from(new Array(25))
         : placesArray

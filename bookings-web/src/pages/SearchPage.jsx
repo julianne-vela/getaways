@@ -1,32 +1,55 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import PlaceList from '../components/places/PlaceList';
 import PageNavBar from '../components/controls/Pagination';
 import Search from '../components/controls/Search';
 import Filter from '../components/controls/Filter';
 import { usePlaces } from '../hooks/usePlaces';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
 const SearchPage = () => {
   const props = usePlaces();
+  const classes = useStyles();
+
   return (
-    <Grid component="main" container>
-      <Grid component="aside" container item className="pageNav">
-        <PageNavBar {...props} />
-      </Grid>
+    <main className={classes.root}>
       <Grid
-        component="aside"
+        component="section"
+        direction="column"
+        alignItems="center"
+        justify="center"
         container
-        item
-        className="sideBar"
-        aria-label="sidebar controls"
+        spacing={3}
       >
-        <Search {...props} />
-        <Filter {...props} />
+        <Grid component="aside" item xs={12} aria-label="page navigation">
+          <PageNavBar className={classes.paper} />
+        </Grid>
+
+        <Grid item component="aside" aria-label="sidebar controls" xs={4}>
+          <Search className={classes.paper} {...props} />
+          <Filter className={classes.paper} {...props} />
+        </Grid>
+        <Grid
+          item
+          component="section"
+          className={classes.paper}
+          aria-label="places list"
+          xs={8}
+        >
+          <PlaceList className={classes.paper} {...props} />
+        </Grid>
       </Grid>
-      <Grid component="section" container item className="displayList">
-        <PlaceList {...props} />
-      </Grid>
-    </Grid>
+    </main>
   );
 };
 
