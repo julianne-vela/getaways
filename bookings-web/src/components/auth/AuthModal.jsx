@@ -10,7 +10,6 @@ import {
 import { TabContext, TabList, TabPanel } from '@material-ui/lab';
 import LoginForm from './forms/LoginForm';
 import SignupForm from './forms/SignupForm';
-import { useAuth } from '../../hooks/useAuth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,17 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AuthModal = () => {
+const AuthModal = ({ ...auth }) => {
   const classes = useStyles();
-  const {
-    open,
-    value,
-    username,
-    isLoggedIn,
-    handleOpen,
-    handleSubmit,
-    handleTabChange,
-  } = useAuth();
 
   const a11yProps = (idx) => {
     return {
@@ -41,15 +31,20 @@ const AuthModal = () => {
     };
   };
 
+  const username = auth.userState.email.substring(
+    0,
+    auth.userState.email.lastIndexOf('@')
+  );
+
   return (
     <Container component="section">
-      {isLoggedIn ? (
+      {auth.isLoggedIn ? (
         <>
           {console.log('is logged in')}
-          <Typography>Welcome, ${username}!</Typography>
+          <Typography>Welcome, {username}!</Typography>
           <Button
             className={classes.button}
-            onClick={handleSubmit}
+            onClick={auth.handleSubmit}
             variant="contained"
             name="logout"
             color="secondary"
@@ -61,7 +56,7 @@ const AuthModal = () => {
         <>
           <Button
             className={classes.button}
-            onClick={handleOpen}
+            onClick={auth.handleOpen}
             variant="contained"
             value="login"
             color="default"
@@ -70,13 +65,13 @@ const AuthModal = () => {
           </Button>
           {/* <Link to="/myaccount"> */}
           <Dialog
-            open={open}
+            open={auth.open}
             aria-labelledby="authentication-form"
             aria-describedby="user signup and login modal"
           >
-            <TabContext className={classes.root} value={value}>
+            <TabContext className={classes.root} value={auth.value}>
               <TabList
-                onChange={handleTabChange}
+                onChange={auth.handleTabChange}
                 aria-label="authentication-tabs"
               >
                 <Tab label="Login" value="login" {...a11yProps(1)} />
@@ -87,12 +82,12 @@ const AuthModal = () => {
                 <Typography>
                   Login to your account to access your reservations.
                 </Typography>
-                <LoginForm />
+                <LoginForm {...auth} />
               </TabPanel>
 
               <TabPanel value="signup" idx={2}>
                 <Typography>Create an account below to get started!</Typography>
-                <SignupForm />
+                <SignupForm {...auth} />
               </TabPanel>
             </TabContext>
           </Dialog>

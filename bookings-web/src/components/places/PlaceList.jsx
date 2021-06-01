@@ -1,44 +1,30 @@
 import React from 'react';
-import { Container, GridList, GridListTile } from '@material-ui/core';
-import PropTypes from 'prop-types';
+import { GridList, GridListTile } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 import Place from './Place';
 
-const PlaceList = ({ places }) => {
+const PlaceList = ({ loading, loadAnimation, placesArray }) => {
   return (
-    <Container>
-      <GridList cellHeight={300} cols={3} spacing={4}>
-        {places.map((place) => (
-          <GridListTile key={place.id}>
-            <img
-              src={place.imageThumbnail}
-              alt={place.title}
-              width="400px"
-              height="300px"
-            />
+    <GridList cellHeight={400} cols={3} spacing={2}>
+      {(!loadAnimation || loading
+        ? Array.from(new Array(25))
+        : placesArray
+      ).map((place, index) => (
+        <GridListTile key={index}>
+          {place ? (
             <Place {...place} />
-          </GridListTile>
-        ))}
-      </GridList>
-    </Container>
+          ) : (
+            <Skeleton
+              variant="rect"
+              animation="wave"
+              height={300}
+              width={400}
+            ></Skeleton>
+          )}
+        </GridListTile>
+      ))}
+    </GridList>
   );
-};
-
-PlaceList.propTypes = {
-  places: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      location: PropTypes.string.isRequired,
-      pricePerNight: PropTypes.number.isRequired,
-      image: PropTypes.string.isRequired,
-      imageThumbnail: PropTypes.string.isRequired,
-      maxGuests: PropTypes.number.isRequired,
-      petFriendly: PropTypes.bool.isRequired,
-      pool: PropTypes.bool.isRequired,
-      wifi: PropTypes.bool.isRequired,
-    })
-  ).isRequired,
 };
 
 export default PlaceList;
